@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # AlmaLinux System Setup and Optimization Script
-# Author: AI Assistant
+# Author: Me with AI Assistant
 # Date: August 13, 2024
 
 set -e
@@ -14,17 +14,20 @@ check_root() {
     fi
 }
 
+# Function to enable necessary repositories
+enable_repos() {
+    echo "Enabling CRB and PLUS repositories..."
+    dnf config-manager --set-enabled crb
+    dnf config-manager --set-enabled plus
+    echo "Installing EPEL repository..."
+    dnf install -y epel-release
+}
+
 # Function to update the system
 update_system() {
     echo "Updating system..."
     dnf update -y
     dnf upgrade -y
-}
-
-# Function to install EPEL repository
-install_epel() {
-    echo "Installing EPEL repository..."
-    dnf install -y epel-release
 }
 
 # Function to install common tools and utilities
@@ -113,6 +116,7 @@ cleanup() {
 # Main function
 main() {
     check_root
+    enable_repos
     update_system
     install_epel
     install_common_tools
