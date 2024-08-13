@@ -33,7 +33,7 @@ update_system() {
 # Function to install common tools and utilities
 install_common_tools() {
     echo "Installing common tools and utilities..."
-    dnf install -y neovim wget curl git btop tmux zsh neofetch gnome-shell-extension-pop-shell gnome-shell-extension-user-theme gnome-shell-extension-workspace-indicator gnome-shell-extension-dash-to-panel gnome-shell-extension-blur-my-shell gnome-shell-extension-arc-menu 
+    dnf install -y neovim wget curl git btop tmux zsh neofetch gnome-shell-extension-pop-shell gnome-shell-extension-user-theme gnome-shell-extension-workspace-indicator gnome-shell-extension-dash-to-panel 
 }
 
 # Function to install and configure Flatpak
