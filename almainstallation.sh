@@ -118,7 +118,6 @@ main() {
     check_root
     enable_repos
     update_system
-    install_epel
     install_common_tools
     setup_flatpak
     install_flatpak_apps
