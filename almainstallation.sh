@@ -54,6 +54,15 @@ install_flatpak_apps() {
     flatpak install -y flathub org.videolan.VLC
 }
 
+install_brave_browser () {
+    echo "Installing Brave browser..."
+    dnf install dnf-plugins-core
+    dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    dnf install brave-browser -y
+}
+
+
 # Function to install development tools
 install_dev_tools() {
     echo "Installing development tools..."
@@ -121,6 +130,7 @@ main() {
     install_common_tools
     setup_flatpak
     install_flatpak_apps
+    install_brave_browser
     install_dev_tools
     setup_firewall
     optimize_system
