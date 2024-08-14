@@ -43,7 +43,7 @@ install_epel() {
 # Function to install common tools and utilities
 install_common_tools() {
     echo "Installing common tools and utilities..."
-    dnf install -y vim nano wget curl git htop tmux zsh neofetch
+    dnf install -y neovim wget curl git btop tmux zsh neofetch gnome-shell-extension-pop-shell gnome-shell-extension-user-theme gnome-shell-extension-workspace-indicator gnome-shell-extension-dash-to-panel kitty kitty-doc kitty-terminfo eza fzf
 }
 
 # Function to install and configure Flatpak
@@ -111,7 +111,6 @@ optimize_system() {
 # Function to install and configure ZSH
 setup_zsh() {
     echo "Setting up ZSH..."
-    dnf install -y zsh
     chsh -s $(which zsh) $ACTUAL_USER
 
     # Install Oh My Zsh for the actual user
@@ -126,18 +125,6 @@ setup_zsh() {
     su - $ACTUAL_USER -c 'curl -o ~/.zshrc https://raw.githubusercontent.com/tonybeyond/almalinux/main/.zshrc'
 
     echo "ZSH setup complete with custom .zshrc file for user $ACTUAL_USER"
-}
-
-# Function to install Blur My Shell extension
-install_blur_my_shell() {
-    echo "Installing Blur My Shell extension..."
-    git clone https://github.com/aunetx/blur-my-shell.git /tmp/blur-my-shell
-    cd /tmp/blur-my-shell
-    sudo -u $ACTUAL_USER make install
-    # Clean up
-    cd -
-    rm -rf /tmp/blur-my-shell
-    echo "Blur My Shell extension installed for user $ACTUAL_USER"
 }
 
 # Function to clean up
@@ -163,7 +150,6 @@ main() {
     setup_firewall
     optimize_system
     setup_zsh
-    install_blur_my_shell
     cleanup
 
     echo "AlmaLinux setup and optimization complete!"
