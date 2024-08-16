@@ -43,7 +43,7 @@ install_epel() {
 # Function to install common tools and utilities
 install_common_tools() {
     echo "Installing common tools and utilities..."
-    dnf install -y neovim wget curl git btop tmux zsh neofetch gnome-shell-extension-pop-shell gnome-shell-extension-user-theme gnome-shell-extension-workspace-indicator gnome-shell-extension-dash-to-panel kitty kitty-doc kitty-terminfo eza fzf
+    dnf install -y ntfs-3g libva libvdpau libva-devel libvdpau-devel neovim wget curl git btop tmux zsh neofetch gnome-shell-extension-pop-shell gnome-shell-extension-user-theme gnome-shell-extension-workspace-indicator gnome-shell-extension-dash-to-panel kitty kitty-doc kitty-terminfo eza fzf
 }
 
 # Function to install and configure Flatpak
@@ -77,6 +77,14 @@ install_dev_tools() {
     dnf groupinstall -y "Development Tools"
     dnf install -y python3 python3-pip nodejs npm
 }
+
+# Function to install development tools
+install_virt_tools() {
+    echo "Installing virtualization host packages..."
+    dnf group install "virtualization host"
+    dnf install -y virt-manager
+}
+
 
 install_brave_browser () {
     echo "Installing Brave browser..."
@@ -147,6 +155,7 @@ main() {
     install_flatpak_apps
     install_brave_browser
     install_dev_tools
+    install_virt_tools
     setup_firewall
     optimize_system
     setup_zsh
